@@ -106,14 +106,6 @@ export class Queries {
       }, {});
   }
 
-  async getNftHolders(token) {
-    const { holders } = await this.ankrProvider.getNFTHolders({
-      blockchain: this.networkIdString,
-      contractAddress: token,
-    });
-    return holders;
-  }
-
   async getBalances(token, addresses) {
     const { holders } = await this.ankrProvider.getTokenHolders({
       blockchain: this.networkIdString,

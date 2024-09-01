@@ -44,9 +44,7 @@ export const defineBatch = async ({
   batchService.addInflows(inflowsData);
 
   // get addresses eligible for contribution
-  const eligibleAddresses = ALLOWLIST
-    ? ALLOWLIST
-    : await queryService.getNftHolders(NFT);
+  const eligibleAddresses = ALLOWLIST;
 
   // earmark eligible addresses
   batchService.checkEligibility(eligibleAddresses);

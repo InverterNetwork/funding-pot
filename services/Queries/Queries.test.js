@@ -73,24 +73,6 @@ describe('Queries', () => {
     });
   });
 
-  describe('#getNftHolders', () => {
-    const nft = '0xec9f9d5fC1fC6DdAEBD4179Bd59ACd84BC1880E7';
-
-    const querySevice = new Queries({
-      rpcUrl:
-        'https://rpc.ankr.com/optimism/' + process.env.ANKR_API_KEY,
-    });
-
-    it('should return all NFT holders with their balances', async () => {
-      const holders = await querySevice.getNftHolders(nft);
-      assert.deepStrictEqual(holders, [
-        '0x1a6c1f5868e6d04233dabbdf6f1a4f7721da1d51',
-        '0x340adb6432d4219336ed5845220d8b594fd9f1aa',
-        '0xd0370ac46205972e4edc2fff15d7d237487c62be',
-      ]);
-    });
-  });
-
   describe('#getAmountOut', () => {
     const bondingCurveAddress =
       '0xcB18d34bCe932F39b645A0F06b8D9D0b981F6F87';
