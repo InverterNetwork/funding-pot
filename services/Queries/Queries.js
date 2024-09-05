@@ -5,6 +5,7 @@ import {
   parseUnits,
 } from 'viem';
 import { AnkrProvider } from '@ankr.com/ankr.js';
+import { Inverter } from '@inverter-network/sdk';
 
 import { queryBuilder } from './queryBuilder.js';
 import abis from '../../data/abis.js';
@@ -14,6 +15,7 @@ export class Queries {
   publicClient;
   ankrProvider;
   networkIdString;
+  sdk;
 
   constructor({ rpcUrl, indexerUrl, chainId, bondingCurveAddress }) {
     this.indexerUrl = indexerUrl;
@@ -31,6 +33,23 @@ export class Queries {
       address: bondingCurveAddress,
       client: this.publicClient,
       abi: abis.bondingCurveAbi,
+    });
+
+    this.sdk = new Inverter({
+      publicClient: this.publicClient,
+    });
+  }
+
+  async loadSdk(orchestratorAddress) {
+    await this.sdk.getWorkflow({
+      orchestratorAddress,
+      requestedModules: {
+        fundingManager:
+          'FM_BC_Restricted_Bancor_Redeeming_VirtualSupply_v1',
+        paymentProcessor: 'PP_Streaming_v1',
+        authorizer: 'AUT_Roles_v1',
+        optionalModules: ['LM_PC_PaymentRouter_v1'],
+      },
     });
   }
 
@@ -130,6 +149,21 @@ export class Queries {
 
   async getSpotPrice() {
     return await this.bondingCurve.read.getStaticPriceForBuying();
+  }
+
+  async getAggregateVestings(orchestratorAddress) {
+    const { LinearVesting: vestings } = await this.indexerConnector(
+      queryBuilder.indexer.vestings(this.chainId, orchestratorAddress)
+    );
+
+    return vestings.reduce((acc, vesting) => {
+      if (!acc[vesting.recipient]) {
+        acc[vesting.recipient] = BigInt(vesting.amountRaw);
+      } else {
+        acc[vesting.recipient] += BigInt(vesting.amountRaw);
+      }
+      return acc;
+    }, {});
   }
 
   /* 

@@ -11,8 +11,15 @@ export const queryBuilder = {
             id
             blockTimestamp
         }
-    }
-  `;
+    }`;
+    },
+    vestings: (chainId, orchestratorAddress) => {
+      return `{
+        LinearVesting(where: {chainId: {_eq: ${chainId}}, streamingPaymentProcessor: {workflow_id: {_eq: "${orchestratorAddress}"}}}) {
+          amountRaw
+          recipient
+        }
+      }`;
     },
   },
   blockExplorer: {

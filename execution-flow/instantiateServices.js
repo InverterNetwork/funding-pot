@@ -15,12 +15,6 @@ export const instantiateServices = async (projectConfig) => {
   } = projectConfig;
 
   // instantiate services
-  const queryService = new Queries({
-    rpcUrl: 'https://rpc.ankr.com/optimism/' + ANKR_API_KEY,
-    indexerUrl: 'https://indexer-v2.ankr.com/graphql',
-    chainId: CHAIN_ID,
-    bondingCurveAddress: BONDING_CURVE,
-  });
   const transactionBuilderService = new TransactionBuilder({
     safe: SAFE,
     paymentRouter: PAYMENT_ROUTER,
@@ -33,6 +27,13 @@ export const instantiateServices = async (projectConfig) => {
     'https://rpc.ankr.com/optimism/' + ANKR_API_KEY
   );
   const batchService = new Batch();
+  const queryService = new Queries({
+    rpcUrl: 'https://rpc.ankr.com/optimism/' + ANKR_API_KEY,
+    indexerUrl: 'https://indexer-v2.ankr.com/graphql',
+    chainId: CHAIN_ID,
+    bondingCurveAddress: BONDING_CURVE,
+  });
+  await queryService.loadSdk();
 
   return {
     safeService,

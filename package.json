@@ -11,6 +11,7 @@
   "type": "module",
   "dependencies": {
     "@ankr.com/ankr.js": "^0.5.1",
+    "@inverter-network/sdk": "^0.2.7",
     "@safe-global/api-kit": "^2.4.4",
     "@safe-global/protocol-kit": "^4.0.4",
     "@safe-global/safe-core-sdk-types": "^5.0.3",
