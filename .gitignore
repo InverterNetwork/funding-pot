@@ -1,9 +1,0 @@
-node_modules
-.env.test
-.env
-
-
-# dynamically generated files (dependent on private keys set in .env.test)
-data/test/input/allowlist.json
-data/test/input/batches/420.json
-data/test/output/TESTPROJECT/420.json
