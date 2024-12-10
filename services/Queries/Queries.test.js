@@ -23,6 +23,7 @@ describe('Queries', () => {
       rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
 
     it('sets relevant workflow addresses', async () => {
@@ -47,6 +48,7 @@ describe('Queries', () => {
       rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
 
     it('should return the blocknumber of the BUY', async () => {
@@ -64,8 +66,9 @@ describe('Queries', () => {
 
     const queryService = new Queries({
       indexerUrl: process.env.INDEXER_URL,
-      rpcUrl: getAnkrRpcUrl(),
+      rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
 
     it('should return all inflows within the timeframe', async () => {
@@ -86,6 +89,7 @@ describe('Queries', () => {
       rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
     queryService.bondingCurve = getContract({
       address: '0xb2c66815262f7a69189Fd7A2b2ea5482a6082958',
@@ -107,6 +111,7 @@ describe('Queries', () => {
       rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
     queryService.bondingCurve = getContract({
       address: '0xb2c66815262f7a69189Fd7A2b2ea5482a6082958',
@@ -126,6 +131,7 @@ describe('Queries', () => {
       rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
     queryService.bondingCurve = getContract({
       address: '0xb2c66815262f7a69189Fd7A2b2ea5482a6082958',
@@ -145,6 +151,7 @@ describe('Queries', () => {
       rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
     queryService.queries.addresses = {
       orchestrator: projectConfig.ORCHESTRATOR,
@@ -169,9 +176,10 @@ describe('Queries', () => {
   describe('#getNftHolders', () => {
     const queryService = new Queries({
       indexerUrl: process.env.INDEXER_URL,
-      rpcUrl: getAnkrRpcUrl(),
+      rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
+      advancedApiKey: process.env.ANKR_API_KEY,
     });
 
     it('should return all NFT holders', async () => {
@@ -188,7 +196,7 @@ describe('Queries', () => {
   describe('#getAllowlist', () => {
     const queryService = new Queries({
       indexerUrl: process.env.INDEXER_URL,
-      rpcUrl: getAnkrRpcUrl(),
+      rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
     });
@@ -204,7 +212,7 @@ describe('Queries', () => {
   describe('#getIssuanceTokenFromWrapper', () => {
     const queryService = new Queries({
       indexerUrl: process.env.INDEXER_URL,
-      rpcUrl: getAnkrRpcUrl(),
+      rpcUrl: process.env.RPC_URL,
       chainId: process.env.CHAIN_ID,
       backendUrl: process.env.BACKEND_URL,
     });

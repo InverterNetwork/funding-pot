@@ -34,7 +34,7 @@ const baseConfig = {
   chain: getChain(process.env.CHAIN_ID),
   transport: http(process.env.RPC_URL),
 };
-const clients = {
+export const clients = {
   owner: {
     publicClient: createPublicClient({
       ...baseConfig,

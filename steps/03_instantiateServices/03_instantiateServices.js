@@ -9,15 +9,22 @@ export const instantiateServices = async (
   batchConfig,
   batchReports
 ) => {
-  const { CHAIN_ID, INDEXER_URL, BACKEND_URL } = process.env;
+  const {
+    CHAIN_ID,
+    INDEXER_URL,
+    BACKEND_URL,
+    RPC_URL,
+    ANKR_API_KEY,
+  } = process.env;
   const { ORCHESTRATOR } = projectConfig;
 
   // instantiate services
   const queryService = new Queries({
-    rpcUrl: getAnkrRpcUrl(),
+    rpcUrl: RPC_URL,
     indexerUrl: INDEXER_URL,
     chainId: CHAIN_ID,
     backendUrl: BACKEND_URL,
+    advancedApiKey: ANKR_API_KEY,
   });
 
   await queryService.setup(ORCHESTRATOR);
@@ -28,11 +35,7 @@ export const instantiateServices = async (
     workflowAddresses: queryService.queries.addresses,
   });
 
-  const safeService = new Safe(
-    CHAIN_ID,
-    projectConfig,
-    getAnkrRpcUrl()
-  );
+  const safeService = new Safe(CHAIN_ID, projectConfig, RPC_URL);
 
   const batchService = new Batch({
     batchConfig,

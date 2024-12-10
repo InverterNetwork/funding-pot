@@ -1,0 +1,13 @@
+{
+  "workflowAdmin": "0x...",
+  "projects": {
+    "<PROJECT_NAME_1>": {
+      "<FEE_CLAIMER>": "0x...",
+      "<FEE_RECIPIENT>": "0x..."
+    },
+    "<PROJECT_NAME_2>": {
+      "<FEE_CLAIMER>": "0x...",
+      "<FEE_RECIPIENT>": "0x..."
+    }
+  }
+}

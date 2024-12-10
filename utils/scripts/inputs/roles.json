@@ -1,0 +1,9 @@
+{
+  "workflowAdmin": "0xD17eE7f114D85055d5625A20A96eA18b704947F1",
+  "projects": {
+    "GENERATED_TEST_PROJECT": {
+      "feeClaimer": "0xa6e12EDe427516a56a5F6ab6e06dD335075eb04b",
+      "feeRecipient": "0xCb1eDf0E617c0FaB6408701d58b746451EE6cE2f"
+    }
+  }
+}
